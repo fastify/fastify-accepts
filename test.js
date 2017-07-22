@@ -11,12 +11,12 @@ const testCases = [
   {
     name: 'no header',
     acceptHeader: '',
-    expected: { types: [] }
+    expected: { types: [], charsets: ['*'] }
   },
   {
     name: 'simple',
     acceptHeader: 'text/html',
-    expected: { types: ['text/html'] }
+    expected: { types: ['text/html'], charsets: ['*'] }
   },
   {
     name: 'complex',
@@ -27,7 +27,8 @@ const testCases = [
         'application/xhtml+xml',
         'application/xml',
         '*/*'
-      ]
+      ],
+      charsets: ['*']
     }
   }
 ]
@@ -39,9 +40,9 @@ test('accept header', t => {
   fastify.register(plugin)
 
   fastify.get('/', function (req, reply) {
-    const acceptObject = req.accepts()
     reply.send({
-      types: acceptObject.types()
+      types: req.types(),
+      charsets: req.charsets()
     })
   })
 
