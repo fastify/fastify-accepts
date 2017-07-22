@@ -35,6 +35,21 @@ fastify.post('/', function (req, reply) {
 
 See [accepts package](https://www.npmjs.com/package/accepts) for all available APIs.
 
+This plugin adds to `Request` object all `Accepts` object methods.
+
+```js
+fastify.post('/', function (req, reply) {
+  req.charset('utf-8')
+  req.charsets()
+  req.encoding('gzip', 'compress')
+  req.encodings()
+  req.language('es', 'en')
+  req.languages()
+  req.type('image/png', 'image/tiff')
+  req.types()
+})
+```
+
 ## License
 
 Licensed under [MIT](./LICENSE)
