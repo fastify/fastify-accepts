@@ -15,9 +15,7 @@ Add accepts parser to fastify
 const fastify = require('fastify')
 const Boom = require('boom')
 
-fastify.register(require('fastify-accepts'), err => {
-  if (err) throw err
-})
+fastify.register(require('fastify-accepts'))
 
 fastify.post('/', function (req, reply) {
   const accept = req.accepts() // Accepts object
