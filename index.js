@@ -4,8 +4,14 @@ const accepts = require('accepts')
 
 const fp = require('fastify-plugin')
 
+const acceptsObjectSymbol = Symbol('acceptsObject')
+
 function acceptsMethod () {
-  return accepts(this.req)
+  if (!this.req[acceptsObjectSymbol]) {
+    this.req[acceptsObjectSymbol] = accepts(this.req)
+  }
+
+  return this.req[acceptsObjectSymbol]
 }
 
 function fastifyAcceptHeader (fastify, options, done) {
