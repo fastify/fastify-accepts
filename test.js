@@ -11,12 +11,28 @@ const testCases = [
   {
     name: 'no header',
     acceptHeader: '',
-    expected: { types: [], charsets: ['*'] }
+    expected: {
+      types: [],
+      charsets: ['*'],
+      param1: 'utf1',
+      param2: 'utf1',
+      param3: 'utf1',
+      param4: 'utf1',
+      param5: 'utf1'
+    }
   },
   {
     name: 'simple',
     acceptHeader: 'text/html',
-    expected: { types: ['text/html'], charsets: ['*'] }
+    expected: {
+      types: ['text/html'],
+      charsets: ['*'],
+      param1: 'utf1',
+      param2: 'utf1',
+      param3: 'utf1',
+      param4: 'utf1',
+      param5: 'utf1'
+    }
   },
   {
     name: 'complex',
@@ -28,7 +44,12 @@ const testCases = [
         'application/xml',
         '*/*'
       ],
-      charsets: ['*']
+      charsets: ['*'],
+      param1: 'utf1',
+      param2: 'utf1',
+      param3: 'utf1',
+      param4: 'utf1',
+      param5: 'utf1'
     }
   }
 ]
@@ -42,7 +63,12 @@ test('accept header', t => {
   fastify.get('/', function (req, reply) {
     reply.send({
       types: req.types(),
-      charsets: req.charsets()
+      charsets: req.charsets(),
+      param1: req.charsets('utf1'),
+      param2: req.charsets('utf1', 'utf2'),
+      param3: req.charsets('utf1', 'utf2', 'utf3'),
+      param4: req.charsets('utf1', 'utf2', 'utf3', 'utf4'),
+      param5: req.charsets('utf1', 'utf2', 'utf3', 'utf4', 'utf5')
     })
   })
 
