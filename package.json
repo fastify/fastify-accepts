@@ -24,7 +24,7 @@
     "unit": "tap test.js",
     "test": "npm run lint && npm run unit",
     "coverage": "tap test.js --cov --coverage-report=text-lcov --coverage-report=html",
-    "coveralls": "npm run coverage | coveralls"
+    "coveralls": "tap test.js --cov --coverage-report=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
