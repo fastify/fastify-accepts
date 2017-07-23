@@ -42,13 +42,13 @@ This plugin adds to `Request` object all `Accepts` object methods.
 
 ```js
 fastify.post('/', function (req, reply) {
-  req.charset('utf-8')
+  req.charset(['utf-8'])
   req.charsets()
-  req.encoding('gzip', 'compress')
+  req.encoding(['gzip', 'compress'])
   req.encodings()
-  req.language('es', 'en')
+  req.language(['es', 'en'])
   req.languages()
-  req.type('image/png', 'image/tiff')
+  req.type(['image/png', 'image/tiff'])
   req.types()
 })
 ```
