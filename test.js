@@ -64,11 +64,11 @@ test('accept header', t => {
     reply.send({
       types: req.types(),
       charsets: req.charsets(),
-      param1: req.charsets('utf1'),
-      param2: req.charsets('utf1', 'utf2'),
-      param3: req.charsets('utf1', 'utf2', 'utf3'),
-      param4: req.charsets('utf1', 'utf2', 'utf3', 'utf4'),
-      param5: req.charsets('utf1', 'utf2', 'utf3', 'utf4', 'utf5')
+      param1: req.charsets(['utf1']),
+      param2: req.charsets(['utf1', 'utf2']),
+      param3: req.charsets(['utf1', 'utf2', 'utf3']),
+      param4: req.charsets(['utf1', 'utf2', 'utf3', 'utf4']),
+      param5: req.charsets(['utf1', 'utf2', 'utf3', 'utf4', 'utf5'])
     })
   })
 
