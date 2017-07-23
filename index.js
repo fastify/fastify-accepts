@@ -25,15 +25,10 @@ function fastifyAcceptHeader (fastify, options, done) {
   fastify.decorateRequest('accepts', acceptsMethod)
 
   methodNames.forEach(methodName => {
-    fastify.decorateRequest(methodName, function (a, b, c, d) {
+    fastify.decorateRequest(methodName, function (arr) {
       const acceptsObject = this.accepts()
       if (arguments.length === 0) return acceptsObject[methodName]()
-      if (arguments.length === 1) return acceptsObject[methodName](a)
-      if (arguments.length === 2) return acceptsObject[methodName](a, b)
-      if (arguments.length === 3) return acceptsObject[methodName](a, b, c)
-      if (arguments.length === 4) return acceptsObject[methodName](a, b, c, d)
-
-      return acceptsObject[methodName].apply(acceptsObject, arguments)
+      return acceptsObject[methodName](arr)
     })
   })
 
