@@ -17,11 +17,20 @@ function acceptsMethod () {
   if (!this.req[acceptsObjectSymbol]) {
     this.req[acceptsObjectSymbol] = accepts(this.req)
   }
-
   return this.req[acceptsObjectSymbol]
 }
 
+function replyAcceptMethod () {
+  if (!this._req[acceptsObjectSymbol]) {
+    this._req[acceptsObjectSymbol] = accepts(this._req)
+  }
+  return this._req[acceptsObjectSymbol]
+}
+
 function fastifyAcceptHeader (fastify, options, done) {
+  options = options || {}
+  const decorateReplyToo = options.decorateReply
+
   fastify.decorateRequest('accepts', acceptsMethod)
 
   methodNames.forEach(methodName => {
@@ -31,6 +40,19 @@ function fastifyAcceptHeader (fastify, options, done) {
       return acceptsObject[methodName](arr)
     })
   })
+
+  if (decorateReplyToo) {
+    fastify.decorateReply('requestAccepts', replyAcceptMethod)
+
+    methodNames.forEach(methodName => {
+      const capitalizedMethodName = methodName.replace(/(?:^|\s)\S/g, a => a.toUpperCase())
+      fastify.decorateReply('request' + capitalizedMethodName, function (arr) {
+        const acceptsObject = this.requestAccepts()
+        if (arguments.length === 0) return acceptsObject[methodName]()
+        return acceptsObject[methodName](arr)
+      })
+    })
+  }
 
   done()
 }

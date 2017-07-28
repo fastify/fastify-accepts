@@ -9,8 +9,9 @@ const Fastify = require('fastify')
 
 const testCases = [
   {
-    name: 'no header',
+    name: 'request - no header',
     acceptHeader: '',
+    url: '/request',
     expected: {
       types: [],
       charsets: ['*'],
@@ -22,8 +23,9 @@ const testCases = [
     }
   },
   {
-    name: 'simple',
+    name: 'request - simple',
     acceptHeader: 'text/html',
+    url: '/request',
     expected: {
       types: ['text/html'],
       charsets: ['*'],
@@ -35,8 +37,9 @@ const testCases = [
     }
   },
   {
-    name: 'complex',
+    name: 'request - complex',
     acceptHeader: 'text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8',
+    url: '/request',
     expected: {
       types: [
         'text/html',
@@ -51,6 +54,38 @@ const testCases = [
       param4: 'utf1',
       param5: 'utf1'
     }
+  },
+  {
+    name: 'reply - no header',
+    acceptHeader: '',
+    url: '/reply',
+    expected: {
+      types: [],
+      param1: 'utf1'
+    }
+  },
+  {
+    name: 'reply - simple',
+    acceptHeader: 'text/html',
+    url: '/reply',
+    expected: {
+      types: ['text/html'],
+      param1: 'utf1'
+    }
+  },
+  {
+    name: 'reply - complex',
+    acceptHeader: 'text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8',
+    url: '/reply',
+    expected: {
+      types: [
+        'text/html',
+        'application/xhtml+xml',
+        'application/xml',
+        '*/*'
+      ],
+      param1: 'utf1'
+    }
   }
 ]
 
@@ -58,9 +93,9 @@ test('accept header', t => {
   t.plan(testCases.length)
 
   const fastify = Fastify()
-  fastify.register(plugin)
+  fastify.register(plugin, {decorateReply: true})
 
-  fastify.get('/', function (req, reply) {
+  fastify.get('/request', function (req, reply) {
     reply.send({
       types: req.types(),
       charsets: req.charsets(),
@@ -72,14 +107,21 @@ test('accept header', t => {
     })
   })
 
+  fastify.get('/reply', function (req, reply) {
+    reply.send({
+      types: reply.requestTypes(),
+      param1: reply.requestCharsets(['utf1'])
+    })
+  })
+
   fastify.listen(0, function () {
-    const url = `http://localhost:${fastify.server.address().port}/`
+    const BASE_URL = `http://localhost:${fastify.server.address().port}`
 
     testCases.forEach(function (testCase) {
       t.test(testCase.name, (t) => {
         t.plan(2)
         request({
-          url: url,
+          url: `${BASE_URL}${testCase.url}`,
           headers: {
             accept: testCase.acceptHeader
           },
