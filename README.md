@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/fastify/fastify-accepts.svg?branch=master)](https://travis-ci.org/fastify/fastify-accepts)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Coverage Status](https://coveralls.io/repos/github/fastify/fastify-accepts/badge.svg?branch=feature%2Fshortcuts)](https://coveralls.io/github/fastify/fastify-accepts?branch=feature%2Fshortcuts)
+[![Known Vulnerabilities](https://snyk.io/test/github/fastify/fastify-accepts/badge.svg)](https://snyk.io/test/github/fastify/fastify-accepts)
 
 Add accepts parser to fastify
 
