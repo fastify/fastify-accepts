@@ -4,7 +4,7 @@
   "description": "Add accept parser to fastify",
   "main": "index.js",
   "devDependencies": {
-    "coveralls": "^2.13.1",
+    "coveralls": "^3.0.0",
     "fastify": "^0.29.0",
     "pre-commit": "^1.2.2",
     "request": "2.81.0",
