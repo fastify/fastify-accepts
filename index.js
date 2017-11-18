@@ -21,10 +21,10 @@ function acceptsMethod () {
 }
 
 function replyAcceptMethod () {
-  if (!this._req[acceptsObjectSymbol]) {
-    this._req[acceptsObjectSymbol] = accepts(this._req)
+  if (!this.request[acceptsObjectSymbol]) {
+    this.request[acceptsObjectSymbol] = accepts(this.request.req)
   }
-  return this._req[acceptsObjectSymbol]
+  return this.request[acceptsObjectSymbol]
 }
 
 function fastifyAcceptHeader (fastify, options, done) {
@@ -57,4 +57,4 @@ function fastifyAcceptHeader (fastify, options, done) {
   done()
 }
 
-module.exports = fp(fastifyAcceptHeader, '>= 0.13.1')
+module.exports = fp(fastifyAcceptHeader, '>= 0.35.0')
