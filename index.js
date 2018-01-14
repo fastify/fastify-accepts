@@ -57,4 +57,7 @@ function fastifyAcceptHeader (fastify, options, done) {
   done()
 }
 
-module.exports = fp(fastifyAcceptHeader, '>= 0.35.0')
+module.exports = fp(fastifyAcceptHeader, {
+  fastify: '>= 0.39.1',
+  name: 'fastify-accepts'
+})
