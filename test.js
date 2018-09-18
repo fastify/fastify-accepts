@@ -93,7 +93,7 @@ test('accept header', t => {
   t.plan(testCases.length)
 
   const fastify = Fastify()
-  fastify.register(plugin, {decorateReply: true})
+  fastify.register(plugin, { decorateReply: true })
 
   fastify.get('/request', function (req, reply) {
     reply.send({
