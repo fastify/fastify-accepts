@@ -5,7 +5,7 @@
   "main": "index.js",
   "devDependencies": {
     "coveralls": "^3.0.0",
-    "fastify": "^1.8.0",
+    "fastify": "^2.0.0",
     "pre-commit": "^1.2.2",
     "request": "^2.88.0",
     "snazzy": "^8.0.0",
