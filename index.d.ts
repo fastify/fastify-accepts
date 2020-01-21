@@ -3,16 +3,8 @@ import * as fastify from "fastify"
 import { Server, IncomingMessage, ServerResponse } from "http"
 
 declare module "fastify" {
-  interface FastifyRequest<HttpRequest> {
+  interface FastifyRequest<HttpRequest> extends Accepts {
     accepts(): Accepts
-    charset: Accepts["charset"]
-    charsets: Accepts["charsets"]
-    encoding: Accepts["encoding"]
-    encodings: Accepts["charsets"]
-    language: Accepts["language"]
-    languages: Accepts["languages"]
-    type: Accepts["type"]
-    types: Accepts["types"]
   }
 
   interface FastifyReply<HttpResponse> {
