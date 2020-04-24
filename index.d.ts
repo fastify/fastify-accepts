@@ -1,13 +1,12 @@
 import { Accepts } from "accepts"
-import * as fastify from "fastify"
-import { Server, IncomingMessage, ServerResponse } from "http"
+import { FastifyPlugin } from "fastify"
 
 declare module "fastify" {
-  interface FastifyRequest<HttpRequest> extends Accepts {
+  interface FastifyRequestInterface extends Accepts {
     accepts(): Accepts
   }
 
-  interface FastifyReply<HttpResponse> {
+  interface FastifyReplyInterface {
     requestAccepts(): Accepts
     requestCharset: Accepts["charset"]
     requestCharsets: Accepts["charsets"]
@@ -20,11 +19,6 @@ declare module "fastify" {
   }
 }
 
-export const fastifyAccepts: fastify.Plugin<
-  Server,
-  IncomingMessage,
-  ServerResponse,
-  {}
->
+export const fastifyAccepts: FastifyPlugin<{}>
 
 export default fastifyAccepts
