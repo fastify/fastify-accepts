@@ -19,6 +19,10 @@ declare module "fastify" {
   }
 }
 
-export const fastifyAccepts: FastifyPlugin<{}>
+export interface FastifyAcceptsOptions {
+  decorateReply: boolean
+}
+
+declare const fastifyAccepts: FastifyPlugin<FastifyAcceptsOptions>
 
 export default fastifyAccepts
