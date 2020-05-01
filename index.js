@@ -14,15 +14,15 @@ const methodNames = [
 ]
 
 function acceptsMethod () {
-  if (!this.req[acceptsObjectSymbol]) {
-    this.req[acceptsObjectSymbol] = accepts(this.req)
+  if (!this.raw[acceptsObjectSymbol]) {
+    this.raw[acceptsObjectSymbol] = accepts(this.raw)
   }
-  return this.req[acceptsObjectSymbol]
+  return this.raw[acceptsObjectSymbol]
 }
 
 function replyAcceptMethod () {
   if (!this.request[acceptsObjectSymbol]) {
-    this.request[acceptsObjectSymbol] = accepts(this.request.req)
+    this.request[acceptsObjectSymbol] = accepts(this.request.raw)
   }
   return this.request[acceptsObjectSymbol]
 }
@@ -58,6 +58,6 @@ function fastifyAcceptHeader (fastify, options, done) {
 }
 
 module.exports = fp(fastifyAcceptHeader, {
-  fastify: '>= 0.39.1',
+  fastify: '>=3',
   name: 'fastify-accepts'
 })

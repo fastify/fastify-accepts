@@ -1,5 +1,5 @@
 import fastify from "fastify"
-import accepts from "./"
+import accepts from "."
 
 const app = fastify()
 
