@@ -95,6 +95,8 @@ test('accept header', t => {
   const fastify = Fastify()
   fastify.register(plugin, { decorateReply: true })
 
+  t.tearDown(fastify.close.bind(fastify))
+
   fastify.get('/request', function (req, reply) {
     reply.send({
       types: req.types(),
@@ -133,6 +135,21 @@ test('accept header', t => {
       })
     })
   })
+})
 
-  fastify.server.unref()
+test('no reply decorator', async function (t) {
+  const fastify = Fastify()
+  fastify.register(plugin, { decorateReply: false })
+  await fastify.ready()
+
+  const methodNames = [
+    'Charset', 'Charsets',
+    'Encoding', 'Encodings',
+    'Language', 'Languages',
+    'Type', 'Types'
+  ]
+
+  for (const method of methodNames) {
+    t.is(fastify.hasReplyDecorator('request' + method, false), false)
+  }
 })

@@ -28,7 +28,6 @@ function replyAcceptMethod () {
 }
 
 function fastifyAcceptHeader (fastify, options, done) {
-  options = options || {}
   const decorateReplyToo = options.decorateReply
 
   fastify.decorateRequest('accepts', acceptsMethod)
@@ -58,6 +57,6 @@ function fastifyAcceptHeader (fastify, options, done) {
 }
 
 module.exports = fp(fastifyAcceptHeader, {
-  fastify: '>=3',
+  fastify: '3.x',
   name: 'fastify-accepts'
 })
