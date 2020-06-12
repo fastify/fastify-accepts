@@ -2,11 +2,11 @@ import { Accepts } from "accepts"
 import { FastifyPlugin } from "fastify"
 
 declare module "fastify" {
-  interface FastifyRequestInterface extends Accepts {
+  interface FastifyRequest extends Accepts {
     accepts(): Accepts
   }
 
-  interface FastifyReplyInterface {
+  interface FastifyReply {
     requestAccepts(): Accepts
     requestCharset: Accepts["charset"]
     requestCharsets: Accepts["charsets"]
