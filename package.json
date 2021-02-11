@@ -24,9 +24,10 @@
   },
   "scripts": {
     "lint": "standard | snazzy",
-    "unit": "tap --100 test.js",
     "test": "npm run lint && npm run unit && npm run typescript",
-    "typescript": "tsd"
+    "test:ci": "npm run lint && tap test.js --coverage-report=lcovonly && npm run typescript",
+    "typescript": "tsd",
+    "unit": "tap --100 test.js"
   },
   "repository": {
     "type": "git",
