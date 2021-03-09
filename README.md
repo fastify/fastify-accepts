@@ -1,6 +1,6 @@
 # fastify-accepts
 
-![CI workflow](https://github.com/fastify/fastify-accepts/workflows/CI%20workflow/badge.svg)
+![CI](https://github.com/fastify/fastify-accepts/workflows/CI/badge.svg)
 [![NPM version](https://img.shields.io/npm/v/fastify-accepts.svg?style=flat)](https://www.npmjs.com/package/fastify-accepts)
 [![Known Vulnerabilities](https://snyk.io/test/github/fastify/fastify-accepts/badge.svg)](https://snyk.io/test/github/fastify/fastify-accepts)
 [![Coverage Status](https://coveralls.io/repos/github/fastify/fastify-accepts/badge.svg?branch=master)](https://coveralls.io/github/fastify/fastify-accepts?branch=master)
