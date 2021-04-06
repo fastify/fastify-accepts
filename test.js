@@ -95,7 +95,7 @@ test('accept header', t => {
   const fastify = Fastify()
   fastify.register(plugin, { decorateReply: true })
 
-  t.tearDown(fastify.close.bind(fastify))
+  t.teardown(fastify.close.bind(fastify))
 
   fastify.get('/request', function (req, reply) {
     reply.send({
@@ -150,6 +150,6 @@ test('no reply decorator', async function (t) {
   ]
 
   for (const method of methodNames) {
-    t.is(fastify.hasReplyDecorator('request' + method, false), false)
+    t.equal(fastify.hasReplyDecorator('request' + method, false), false)
   }
 })
