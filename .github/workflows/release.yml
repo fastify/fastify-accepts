@@ -21,7 +21,7 @@ on:
 
 jobs:
   call-reuseable-workflow:
-    uses: fastify/workflows/.github/workflows/release-package@automated-release
+    uses: fastify/workflows/.github/workflows/release-package.yml@automated-release
     with:
       semver: ${{ github.event.inputs.semver }}
       tag: ${{ github.event.inputs.commit-message }}
