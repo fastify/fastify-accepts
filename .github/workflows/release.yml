@@ -1,0 +1,30 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      semver:
+        description: "The semver to use"
+        required: true
+        default: "patch"
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      tag:
+        description: "The npm tag"
+        required: false
+        default: "latest"
+  pull_request:
+    types: [closed]
+
+jobs:
+  call-reuseable-workflow:
+    uses: fastify/workflows/.github/workflows/release-package@automated-release
+    with:
+      semver: ${{ github.event.inputs.semver }}
+      tag: ${{ github.event.inputs.commit-message }}
+    secrets:
+      ORG_NPM_TOKEN: ${{ secrets.ORG_NPM_TOKEN }}
+      ORG_MEMBER_OPTIC_TOKEN: ${{ secrets[format('ORG_OPTIC_TOKEN_{0}', github.actor)] }}
