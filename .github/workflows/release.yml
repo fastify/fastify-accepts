@@ -18,6 +18,9 @@ on:
         default: "latest"
   pull_request:
     types: [closed]
+    branches:
+      - master
+      - 'release/**'
 
 jobs:
   call-reuseable-workflow:
