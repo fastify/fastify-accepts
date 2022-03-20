@@ -24,7 +24,7 @@ jobs:
     uses: fastify/workflows/.github/workflows/release-package.yml@automated-release
     with:
       semver: ${{ github.event.inputs.semver }}
-      tag: ${{ github.event.inputs.commit-message }}
+      tag: ${{ github.event.inputs.tag }}
     secrets:
       ORG_NPM_TOKEN: ${{ secrets.ORG_NPM_TOKEN }}
       ORG_MEMBER_OPTIC_TOKEN: ${{ secrets[format('ORG_OPTIC_TOKEN_{0}', github.actor)] }}
