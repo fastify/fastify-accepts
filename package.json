@@ -1,6 +1,6 @@
 {
-  "name": "fastify-accepts",
-  "version": "2.2.0",
+  "name": "@fastify/accepts",
+  "version": "3.0.0",
   "description": "Add accept parser to fastify",
   "main": "index.js",
   "devDependencies": {
@@ -38,5 +38,8 @@
   "bugs": {
     "url": "https://github.com/fastify/fastify-accepts/issues"
   },
-  "homepage": "https://github.com/fastify/fastify-accepts#readme"
+  "homepage": "https://github.com/fastify/fastify-accepts#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }
