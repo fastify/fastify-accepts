@@ -1,7 +1,7 @@
-# fastify-accepts
+# @fastify/accepts
 
 ![CI](https://github.com/fastify/fastify-accepts/workflows/CI/badge.svg)
-[![NPM version](https://img.shields.io/npm/v/fastify-accepts.svg?style=flat)](https://www.npmjs.com/package/fastify-accepts)
+[![NPM version](https://img.shields.io/npm/v/@fastify/accepts.svg?style=flat)](https://www.npmjs.com/package/@fastify/accepts)
 [![Known Vulnerabilities](https://snyk.io/test/github/fastify/fastify-accepts/badge.svg)](https://snyk.io/test/github/fastify/fastify-accepts)
 [![Coverage Status](https://coveralls.io/repos/github/fastify/fastify-accepts/badge.svg?branch=master)](https://coveralls.io/github/fastify/fastify-accepts?branch=master)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://standardjs.com/)
@@ -10,7 +10,7 @@ Add accepts parser to fastify
 
 ## Install
 
-`npm install --save fastify-accepts`
+`npm install --save @fastify/accepts`
 
 ## Usage
 
@@ -18,7 +18,7 @@ Add accepts parser to fastify
 const fastify = require('fastify')
 const Boom = require('boom')
 
-fastify.register(require('fastify-accepts'))
+fastify.register(require('@fastify/accepts'))
 
 fastify.post('/', function (req, reply) {
   const accept = req.accepts() // Accepts object
