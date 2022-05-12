@@ -57,6 +57,6 @@ function fastifyAcceptHeader (fastify, options, done) {
 }
 
 module.exports = fp(fastifyAcceptHeader, {
-  fastify: '3.x',
-  name: 'fastify-accepts'
+  fastify: '4.x',
+  name: '@fastify/accepts'
 })
