@@ -8,7 +8,7 @@ Add accepts parser to fastify
 
 ## Install
 
-`npm install --save @fastify/accepts`
+`npm i @fastify/accepts`
 
 ## Usage
 
