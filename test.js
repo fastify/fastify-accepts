@@ -116,7 +116,7 @@ test('accept header', t => {
     })
   })
 
-  fastify.listen(0, function () {
+  fastify.listen({ port: 0 }, function () {
     const BASE_URL = `http://localhost:${fastify.server.address().port}`
 
     testCases.forEach(function (testCase) {
