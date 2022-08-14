@@ -12,9 +12,9 @@ Add accepts parser to fastify
 
 ## Usage
 
-```js
+```nodejs
 const fastify = require('fastify')
-const Boom = require('boom')
+const Boom = require('@hapi/boom')
 
 fastify.register(require('@fastify/accepts'))
 
@@ -38,7 +38,7 @@ See [accepts package](https://www.npmjs.com/package/accepts) for all available A
 
 This plugin adds to `Request` object all `Accepts` object methods.
 
-```js
+```nodejs
 fastify.post('/', function (req, reply) {
   req.charset(['utf-8'])
   req.charsets()
