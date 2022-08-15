@@ -14,7 +14,7 @@ Add accepts parser to fastify
 
 ```js
 const fastify = require('fastify')
-const Boom = require('boom')
+const Boom = require('@hapi/boom')
 
 fastify.register(require('@fastify/accepts'))
 
