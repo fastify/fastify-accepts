@@ -1,3 +1,2 @@
-ts: false
-jsx: false
-flow: false
+files:
+  - 'test/**/*.test.js'
