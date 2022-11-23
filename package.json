@@ -3,6 +3,7 @@
   "version": "4.0.1",
   "description": "Add accept parser to fastify",
   "main": "index.js",
+  "types": "types/index.d.ts",
   "devDependencies": {
     "@fastify/pre-commit": "^2.0.2",
     "@types/accepts": "^1.3.5",
