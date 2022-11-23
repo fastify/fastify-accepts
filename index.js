@@ -4,7 +4,7 @@ const accepts = require('accepts')
 
 const fp = require('fastify-plugin')
 
-const acceptsObjectSymbol = Symbol.for('acceptsObject')
+const acceptsObjectSymbol = Symbol('acceptsObject')
 
 const methodNames = [
   'charset', 'charsets',
