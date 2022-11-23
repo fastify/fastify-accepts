@@ -1,5 +1,5 @@
 import { Accepts } from "accepts"
-import { FastifyPlugin } from "fastify"
+import { FastifyPluginCallback } from "fastify"
 
 declare module "fastify" {
   interface FastifyRequest extends Accepts {
@@ -18,11 +18,16 @@ declare module "fastify" {
     requestTypes: Accepts["types"]
   }
 }
+type FastifyAccepts = FastifyPluginCallback<fastifyAccepts.FastifyAcceptsOptions>
 
-export interface FastifyAcceptsOptions {
-  decorateReply: boolean
+declare namespace fastifyAccepts {
+  export interface FastifyAcceptsOptions {
+    decorateReply: boolean
+  }
+
+  export const fastifyAccepts: FastifyAccepts
+  export { fastifyAccepts as default }
 }
 
-declare const fastifyAccepts: FastifyPlugin<FastifyAcceptsOptions>
-
-export default fastifyAccepts
+declare function fastifyAccepts(...params: Parameters<FastifyAccepts>): ReturnType<FastifyAccepts>
+export = fastifyAccepts
