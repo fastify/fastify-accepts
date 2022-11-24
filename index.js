@@ -27,9 +27,7 @@ function replyAcceptMethod () {
   return this.request[acceptsObjectSymbol]
 }
 
-function fastifyAcceptHeader (fastify, options, done) {
-  const decorateReplyToo = options.decorateReply
-
+function fastifyAccepts (fastify, options, done) {
   fastify.decorateRequest('accepts', acceptsMethod)
 
   methodNames.forEach(methodName => {
@@ -40,7 +38,7 @@ function fastifyAcceptHeader (fastify, options, done) {
     })
   })
 
-  if (decorateReplyToo) {
+  if (options.decorateReply) {
     fastify.decorateReply('requestAccepts', replyAcceptMethod)
 
     methodNames.forEach(methodName => {
@@ -56,7 +54,9 @@ function fastifyAcceptHeader (fastify, options, done) {
   done()
 }
 
-module.exports = fp(fastifyAcceptHeader, {
+module.exports = fp(fastifyAccepts, {
   fastify: '4.x',
   name: '@fastify/accepts'
 })
+module.exports.default = fastifyAccepts
+module.exports.fastifyAccepts = fastifyAccepts

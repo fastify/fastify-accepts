@@ -2,7 +2,7 @@
 
 const test = require('tap').test
 
-const plugin = require('./')
+const fastifyAccepts = require('..')
 
 const request = require('request')
 const Fastify = require('fastify')
@@ -93,7 +93,7 @@ test('accept header', t => {
   t.plan(testCases.length)
 
   const fastify = Fastify()
-  fastify.register(plugin, { decorateReply: true })
+  fastify.register(fastifyAccepts, { decorateReply: true })
 
   t.teardown(fastify.close.bind(fastify))
 
@@ -139,7 +139,7 @@ test('accept header', t => {
 
 test('no reply decorator', async function (t) {
   const fastify = Fastify()
-  fastify.register(plugin, { decorateReply: false })
+  fastify.register(fastifyAccepts, { decorateReply: false })
   await fastify.ready()
 
   const methodNames = [

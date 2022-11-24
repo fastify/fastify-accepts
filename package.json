@@ -3,6 +3,7 @@
   "version": "4.0.1",
   "description": "Add accept parser to fastify",
   "main": "index.js",
+  "types": "types/index.d.ts",
   "devDependencies": {
     "@fastify/pre-commit": "^2.0.2",
     "@types/accepts": "^1.3.5",
@@ -20,10 +21,9 @@
   },
   "scripts": {
     "lint": "standard | snazzy",
-    "test": "npm run lint && npm run unit && npm run typescript",
-    "test:ci": "npm run lint && tap test.js --coverage-report=lcovonly && npm run typescript",
-    "typescript": "tsd",
-    "unit": "tap --100 test.js"
+    "test": "npm run test:unit && npm run test:typescript",
+    "test:typescript": "tsd",
+    "test:unit": "tap"
   },
   "repository": {
     "type": "git",
@@ -37,5 +37,9 @@
   "homepage": "https://github.com/fastify/fastify-accepts#readme",
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
 }
