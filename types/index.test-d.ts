@@ -6,7 +6,27 @@ const app = fastify()
 app.register(accepts)
 
 app.get("/", (request, reply) => {
-  request.accepts()
+  const accept = request.accepts();
+
+  const charsets = accept.charsets();
+  const charsetFromEmpty = accept.charset();
+  const charsetFromParams = accept.charset("json", "text");
+  const charsetFromArray = accept.charset(["json", "text"]);
+
+  const encodings = accept.encodings();
+  const encodingFromEmpty = accept.encoding();
+  const encodingFromParams = accept.encoding("json", "text");
+  const encodingFromArray = accept.encoding(["json", "text"]);
+
+  const languages = accept.languages();
+  const languageFromEmpty = accept.language();
+  const languageFromParams = accept.language("json", "text");
+  const languageFromArray = accept.language(["json", "text"]);
+
+  const types = accept.types();
+  const typeFromEmpty = accept.type();
+  const typeFromParams = accept.type("json", "text");
+  const typeFromArray = accept.type(["json", "text"]);
 
   request.charset()
   request.charsets()
@@ -66,3 +86,4 @@ app.get("/", (request, reply) => {
 
   reply.send({ hello: "world" })
 })
+
