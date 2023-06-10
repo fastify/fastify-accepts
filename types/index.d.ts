@@ -2,6 +2,8 @@ import { FastifyPluginCallback } from "fastify"
 
 declare module "fastify" {
   // Copied from https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/accepts/index.d.ts
+  // Definitions by: Stefan Reichel <https://github.com/bomret>
+  //                 Brice BERNARD  <https://github.com/brikou>
   interface Accepts {
     /**
      * Return the first accepted charset. If nothing in `charsets` is accepted, then `false` is returned.
