@@ -42,7 +42,7 @@ function fastifyAccepts (fastify, options, done) {
     fastify.decorateReply('requestAccepts', replyAcceptMethod)
 
     methodNames.forEach(methodName => {
-      const capitalizedMethodName = methodName.replace(/(?:^|\s)\S/g, a => a.toUpperCase())
+      const capitalizedMethodName = methodName.replace(/(?:^|\s)\S/gu, a => a.toUpperCase())
       fastify.decorateReply('request' + capitalizedMethodName, function (arr) {
         const acceptsObject = this.requestAccepts()
         if (arguments.length === 0) return acceptsObject[methodName]()
