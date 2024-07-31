@@ -55,7 +55,7 @@ function fastifyAccepts (fastify, options, done) {
 }
 
 module.exports = fp(fastifyAccepts, {
-  fastify: '4.x',
+  fastify: '5.x',
   name: '@fastify/accepts'
 })
 module.exports.default = fastifyAccepts
