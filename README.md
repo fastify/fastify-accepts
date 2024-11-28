@@ -4,11 +4,26 @@
 [![NPM version](https://img.shields.io/npm/v/@fastify/accepts.svg?style=flat)](https://www.npmjs.com/package/@fastify/accepts)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://standardjs.com/)
 
-Add accepts parser to fastify
+Add an accepts parser to Fastify.
 
 ## Install
 
 `npm i @fastify/accepts`
+
+### Compatibility
+
+| Plugin version | Fastify version |
+| ---------------|-----------------|
+| `^5.x`         | `^5.x`          |
+| `^4.x`         | `^4.x`          |
+| `^2.x`         | `^3.x`          |
+| `^1.x`         | `^2.x`          |
+| `^1.x`         | `^1.x`          |
+
+
+Please note that if a Fastify version is out of support, then so are the corresponding version(s) of this plugin
+in the table above.
+See [Fastify's LTS policy](https://github.com/fastify/fastify/blob/main/docs/Reference/LTS.md) for more details.
 
 ## Usage
 
@@ -53,4 +68,4 @@ fastify.post('/', function (req, reply) {
 
 ## License
 
-Licensed under [MIT](./LICENSE)
+Licensed under [MIT](./LICENSE).
