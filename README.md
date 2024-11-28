@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/fastify/fastify-accepts/workflows/CI/badge.svg)
 [![NPM version](https://img.shields.io/npm/v/@fastify/accepts.svg?style=flat)](https://www.npmjs.com/package/@fastify/accepts)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://standardjs.com/)
+[![neostandard javascript style](https://img.shields.io/badge/code_style-neostandard-brightgreen?style=flat)](https://github.com/neostandard/neostandard)
 
 Add an accepts parser to Fastify.
 
