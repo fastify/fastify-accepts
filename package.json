@@ -30,11 +30,28 @@
     "url": "git+https://github.com/fastify/fastify-accepts.git"
   },
   "author": "allevo",
+  "contributors": [
+    {
+      "name": "Frazer Smith",
+      "email": "frazer.dev@icloud.com",
+      "url": "https://github.com/fdawgs"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fastify/fastify-accepts/issues"
   },
   "homepage": "https://github.com/fastify/fastify-accepts#readme",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/fastify"
+    },
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/fastify"
+    }
+  ],
   "publishConfig": {
     "access": "public"
   },
