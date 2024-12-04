@@ -66,6 +66,11 @@ fastify.post('/', function (req, reply) {
 })
 ```
 
+### Options
+
+- `decorateReply` If `true`, the `Reply` object will be decorated with the `requestAccepts`, `requestTypes`, `requestCharsets`, `requestEncodings`, and `requestLanguages` methods, which will return the corresponding values from the `Request` object. Default: `false`.
+
+```js
 ## License
 
 Licensed under [MIT](./LICENSE).
