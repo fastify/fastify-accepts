@@ -1,6 +1,6 @@
-import { FastifyPluginCallback } from "fastify"
+import { FastifyPluginCallback } from 'fastify'
 
-declare module "fastify" {
+declare module 'fastify' {
   // Copied from https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/accepts/index.d.ts
   // Definitions by: Stefan Reichel <https://github.com/bomret>
   //                 Brice BERNARD  <https://github.com/brikou>
@@ -95,14 +95,14 @@ declare module "fastify" {
 
   interface FastifyReply {
     requestAccepts(): Accepts
-    requestCharset: Accepts["charset"]
-    requestCharsets: Accepts["charsets"]
-    requestEncoding: Accepts["encoding"]
-    requestEncodings: Accepts["charsets"]
-    requestLanguage: Accepts["language"]
-    requestLanguages: Accepts["languages"]
-    requestType: Accepts["type"]
-    requestTypes: Accepts["types"]
+    requestCharset: Accepts['charset']
+    requestCharsets: Accepts['charsets']
+    requestEncoding: Accepts['encoding']
+    requestEncodings: Accepts['charsets']
+    requestLanguage: Accepts['language']
+    requestLanguages: Accepts['languages']
+    requestType: Accepts['type']
+    requestTypes: Accepts['types']
   }
 }
 type FastifyAccepts = FastifyPluginCallback<fastifyAccepts.FastifyAcceptsOptions>
@@ -116,5 +116,5 @@ declare namespace fastifyAccepts {
   export { fastifyAccepts as default }
 }
 
-declare function fastifyAccepts(...params: Parameters<FastifyAccepts>): ReturnType<FastifyAccepts>
+declare function fastifyAccepts (...params: Parameters<FastifyAccepts>): ReturnType<FastifyAccepts>
 export = fastifyAccepts
