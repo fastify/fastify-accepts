@@ -4,6 +4,8 @@ import accepts from '..'
 const app = fastify()
 
 app.register(accepts)
+app.register(accepts, { decorateReply: true })
+app.register(accepts, { decorateReply: false })
 
 app.get('/', (request, reply) => {
   const accept = request.accepts()

@@ -109,7 +109,7 @@ type FastifyAccepts = FastifyPluginCallback<fastifyAccepts.FastifyAcceptsOptions
 
 declare namespace fastifyAccepts {
   export interface FastifyAcceptsOptions {
-    decorateReply: boolean
+    decorateReply?: boolean | undefined
   }
 
   export const fastifyAccepts: FastifyAccepts
