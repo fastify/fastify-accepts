@@ -38,7 +38,7 @@ function fastifyAccepts (fastify, options, done) {
     })
   })
 
-  if (options.decorateReply) {
+  if (options.decorateReply === true) {
     fastify.decorateReply('requestAccepts', replyAcceptMethod)
 
     methodNames.forEach(methodName => {
