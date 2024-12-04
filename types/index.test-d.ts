@@ -8,25 +8,29 @@ app.register(accepts)
 app.get('/', (request, reply) => {
   const accept = request.accepts()
 
-  const charsets = accept.charsets()
-  const charsetFromEmpty = accept.charset()
-  const charsetFromParams = accept.charset('json', 'text')
-  const charsetFromArray = accept.charset(['json', 'text'])
+  // Charsets
+  accept.charsets()
+  accept.charset()
+  accept.charset('json', 'text')
+  accept.charset(['json', 'text'])
 
-  const encodings = accept.encodings()
-  const encodingFromEmpty = accept.encoding()
-  const encodingFromParams = accept.encoding('json', 'text')
-  const encodingFromArray = accept.encoding(['json', 'text'])
+  // Encoding
+  accept.encodings()
+  accept.encoding()
+  accept.encoding('json', 'text')
+  accept.encoding(['json', 'text'])
 
-  const languages = accept.languages()
-  const languageFromEmpty = accept.language()
-  const languageFromParams = accept.language('json', 'text')
-  const languageFromArray = accept.language(['json', 'text'])
+  // Languages
+  accept.languages()
+  accept.language()
+  accept.language('json', 'text')
+  accept.language(['json', 'text'])
 
-  const types = accept.types()
-  const typeFromEmpty = accept.type()
-  const typeFromParams = accept.type('json', 'text')
-  const typeFromArray = accept.type(['json', 'text'])
+  // Types
+  accept.types()
+  accept.type()
+  accept.type('json', 'text')
+  accept.type(['json', 'text'])
 
   request.charset()
   request.charsets()
