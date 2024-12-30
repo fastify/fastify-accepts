@@ -109,7 +109,7 @@ test('accept header', t => {
     })
   })
 
-  fastify.get('/reply', function (req, reply) {
+  fastify.get('/reply', function (_req, reply) {
     reply.send({
       types: reply.requestTypes(),
       param1: reply.requestCharsets(['utf1'])
@@ -128,7 +128,7 @@ test('accept header', t => {
             accept: testCase.acceptHeader
           },
           json: true
-        }, (err, response, body) => {
+        }, (err, _response, body) => {
           t.ok(!err)
           t.strictSame(body, testCase.expected)
         })
