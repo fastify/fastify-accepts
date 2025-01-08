@@ -1,10 +1,9 @@
 'use strict'
 
-const { test } = require('tap')
+const { test } = require('node:test')
 
 const fastifyAccepts = require('..')
 
-const request = require('request')
 const Fastify = require('fastify')
 
 const testCases = [
@@ -89,13 +88,13 @@ const testCases = [
   }
 ]
 
-test('accept header', t => {
+test('accept header', async t => {
   t.plan(testCases.length)
 
   const fastify = Fastify()
   fastify.register(fastifyAccepts, { decorateReply: true })
 
-  t.teardown(fastify.close.bind(fastify))
+  t.after(() => fastify.close())
 
   fastify.get('/request', function (req, reply) {
     reply.send({
@@ -116,25 +115,22 @@ test('accept header', t => {
     })
   })
 
-  fastify.listen({ port: 0 }, function () {
-    const BASE_URL = `http://localhost:${fastify.server.address().port}`
+  await fastify.listen({ port: 0 })
 
-    testCases.forEach(function (testCase) {
-      t.test(testCase.name, (t) => {
-        t.plan(2)
-        request({
-          url: `${BASE_URL}${testCase.url}`,
-          headers: {
-            accept: testCase.acceptHeader
-          },
-          json: true
-        }, (err, _response, body) => {
-          t.ok(!err)
-          t.strictSame(body, testCase.expected)
-        })
+  const BASE_URL = `http://localhost:${fastify.server.address().port}`
+
+  for (const testCase of testCases) {
+    await t.test(testCase.name, async (t) => {
+      t.plan(1)
+
+      const result = await fetch(`${BASE_URL}${testCase.url}`, {
+        headers: {
+          accept: testCase.acceptHeader
+        },
       })
+      t.assert.deepStrictEqual(await result.json(), testCase.expected)
     })
-  })
+  }
 })
 
 test('no reply decorator', async function (t) {
@@ -150,6 +146,6 @@ test('no reply decorator', async function (t) {
   ]
 
   for (const method of methodNames) {
-    t.equal(fastify.hasReplyDecorator('request' + method, false), false)
+    t.assert.deepStrictEqual(fastify.hasReplyDecorator('request' + method, false), false)
   }
 })
