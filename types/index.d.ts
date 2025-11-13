@@ -43,7 +43,7 @@ declare module 'fastify' {
 
     /**
      * Return the first accepted language. If nothing in `languages` is accepted, then `false` is returned.
-     * If no languaes are supplied, all accepted languages are returned, in the order of the client's preference
+     * If no languages are supplied, all accepted languages are returned, in the order of the client's preference
      * (most preferred first).
      */
     language(): string[];
@@ -52,7 +52,7 @@ declare module 'fastify' {
 
     /**
      * Return the first accepted language. If nothing in `languages` is accepted, then `false` is returned.
-     * If no languaes are supplied, all accepted languages are returned, in the order of the client's preference
+     * If no languages are supplied, all accepted languages are returned, in the order of the client's preference
      * (most preferred first).
      */
     languages(): string[];
@@ -61,7 +61,7 @@ declare module 'fastify' {
 
     /**
      * Return the first accepted language. If nothing in `languages` is accepted, then `false` is returned.
-     * If no languaes are supplied, all accepted languages are returned, in the order of the client's preference
+     * If no languages are supplied, all accepted languages are returned, in the order of the client's preference
      * (most preferred first).
      */
     lang(): string[];
@@ -70,7 +70,7 @@ declare module 'fastify' {
 
     /**
      * Return the first accepted language. If nothing in `languages` is accepted, then `false` is returned.
-     * If no languaes are supplied, all accepted languages are returned, in the order of the client's preference
+     * If no languages are supplied, all accepted languages are returned, in the order of the client's preference
      * (most preferred first).
      */
     langs(): string[];
