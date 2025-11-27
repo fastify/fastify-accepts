@@ -13,6 +13,7 @@ const methodNames = [
   'type', 'types'
 ]
 
+/** @this {import('fastify').FastifyRequest} */
 function acceptsMethod () {
   if (!this.raw[acceptsObjectSymbol]) {
     this.raw[acceptsObjectSymbol] = accepts(this.raw)
@@ -20,6 +21,7 @@ function acceptsMethod () {
   return this.raw[acceptsObjectSymbol]
 }
 
+/** @this {import('fastify').FastifyReply} */
 function replyAcceptMethod () {
   if (!this.request[acceptsObjectSymbol]) {
     this.request[acceptsObjectSymbol] = accepts(this.request.raw)
@@ -27,6 +29,7 @@ function replyAcceptMethod () {
   return this.request[acceptsObjectSymbol]
 }
 
+/** @type {typeof import('./types/index').fastifyAccepts} */
 function fastifyAccepts (fastify, options, done) {
   fastify.decorateRequest('accepts', acceptsMethod)
 
