@@ -6,6 +6,8 @@ const fastifyAccepts = require('..')
 
 const Fastify = require('fastify')
 
+/** @typedef {import('node:test').TestContext} TestContext */
+
 const testCases = [
   {
     name: 'request - no header',
@@ -88,7 +90,7 @@ const testCases = [
   }
 ]
 
-test('accept header', async t => {
+test('accept header', async (/** @type {TestContext} */ t) => {
   t.plan(testCases.length)
 
   const fastify = Fastify()
@@ -120,7 +122,7 @@ test('accept header', async t => {
   const BASE_URL = `http://localhost:${fastify.server.address().port}`
 
   for (const testCase of testCases) {
-    await t.test(testCase.name, async (t) => {
+    await t.test(testCase.name, async (/** @type {TestContext} */ t) => {
       t.plan(1)
 
       const result = await fetch(`${BASE_URL}${testCase.url}`, {
@@ -133,7 +135,7 @@ test('accept header', async t => {
   }
 })
 
-test('no reply decorator', async function (t) {
+test('no reply decorator', async function (/** @type {TestContext} */ t) {
   const fastify = Fastify()
   fastify.register(fastifyAccepts, { decorateReply: false })
   await fastify.ready()
