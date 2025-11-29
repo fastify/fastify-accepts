@@ -34,7 +34,7 @@ function fastifyAccepts (fastify, options, done) {
   fastify.decorateRequest('accepts', acceptsMethod)
 
   const methodNamesLength = methodNames.length
-  for (let i = 0; i < methodNamesLength; i+=1) {
+  for (let i = 0; i < methodNamesLength; i += 1) {
     const methodName = methodNames[i]
     // Defining methods this way to ensure named functions show in stack traces
     fastify.decorateRequest(methodName, {
@@ -44,12 +44,12 @@ function fastifyAccepts (fastify, options, done) {
         return acceptsObject[methodName](arr)
       }
     }[methodName])
-  })
+  }
 
   if (options.decorateReply === true) {
     fastify.decorateReply('requestAccepts', replyAcceptMethod)
 
-    for (let i = 0; i < methodNamesLength; i+=1) {
+    for (let i = 0; i < methodNamesLength; i += 1) {
       const methodName = methodNames[i]
       const capitalizedMethodName = methodName.replace(/(?:^|\s)\S/gu, a => a.toUpperCase())
       const replyMethodName = 'request' + capitalizedMethodName
@@ -62,7 +62,7 @@ function fastifyAccepts (fastify, options, done) {
           return acceptsObject[methodName](arr)
         }
       }[acceptsMethodName])
-    })
+    }
   }
 
   done()
