@@ -34,11 +34,14 @@ function fastifyAccepts (fastify, options, done) {
   fastify.decorateRequest('accepts', acceptsMethod)
 
   methodNames.forEach(methodName => {
-    fastify.decorateRequest(methodName, function (arr) {
-      const acceptsObject = this.accepts()
-      if (arguments.length === 0) return acceptsObject[methodName]()
-      return acceptsObject[methodName](arr)
-    })
+    // Defining methods this way to ensure named functions show in stack traces
+    fastify.decorateRequest(methodName, {
+      [methodName]: function (arr) {
+        const acceptsObject = this.accepts()
+        if (arguments.length === 0) return acceptsObject[methodName]()
+        return acceptsObject[methodName](arr)
+      }
+    }[methodName])
   })
 
   if (options.decorateReply === true) {
@@ -46,11 +49,16 @@ function fastifyAccepts (fastify, options, done) {
 
     methodNames.forEach(methodName => {
       const capitalizedMethodName = methodName.replace(/(?:^|\s)\S/gu, a => a.toUpperCase())
-      fastify.decorateReply('request' + capitalizedMethodName, function (arr) {
-        const acceptsObject = this.requestAccepts()
-        if (arguments.length === 0) return acceptsObject[methodName]()
-        return acceptsObject[methodName](arr)
-      })
+      const replyMethodName = 'request' + capitalizedMethodName
+      const acceptsMethodName = 'accepts' + capitalizedMethodName
+      // Defining methods this way to ensure named functions show in stack traces
+      fastify.decorateReply(replyMethodName, {
+        [acceptsMethodName]: function (arr) {
+          const acceptsObject = this.requestAccepts()
+          if (arguments.length === 0) return acceptsObject[methodName]()
+          return acceptsObject[methodName](arr)
+        }
+      }[acceptsMethodName])
     })
   }
 
