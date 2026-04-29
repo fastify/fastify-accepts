@@ -54,7 +54,7 @@ app.get('/', (request, reply) => {
   request.type(['aa', 'aa'])
   request.types(['aa', 'aa'])
 
-  expect(reply.requestAccepts()).type.toBe<ReturnType<typeof request.accepts>>()
+  expect(reply.requestAccepts()).type.toBe(request.accepts())
 
   expect(reply.requestCharset()).type.toBe<string[]>()
   expect(reply.requestCharsets()).type.toBe<string[]>()
