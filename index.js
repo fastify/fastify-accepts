@@ -51,7 +51,7 @@ function fastifyAccepts (fastify, options, done) {
 
     for (let i = 0; i < methodNamesLength; i += 1) {
       const methodName = methodNames[i]
-      const capitalizedMethodName = methodName.replace(/(?:^|\s)\S/gu, a => a.toUpperCase())
+      const capitalizedMethodName = methodName[0].toUpperCase() + methodName.slice(1)
       const replyMethodName = 'request' + capitalizedMethodName
       const acceptsMethodName = 'accepts' + capitalizedMethodName
       // Defining methods this way to ensure named functions show in stack traces
