@@ -28,6 +28,11 @@ app.get('/', (request, reply) => {
   expect(accept.language()).type.toBe<string[]>()
   expect(accept.language('json', 'text')).type.toBe<string | false>()
   expect(accept.language(['json', 'text'])).type.toBe<string | false>()
+  // Aliases of language and languages that are not decorated on the request object
+  expect(accept.langs()).type.toBe<string[]>()
+  expect(accept.lang()).type.toBe<string[]>()
+  expect(request).type.not.toHaveProperty('lang')
+  expect(request).type.not.toHaveProperty('langs')
 
   // Types
   expect(accept.types()).type.toBe<string[] | string | false>()

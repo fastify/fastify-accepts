@@ -89,7 +89,8 @@ declare module 'fastify' {
     types(...types: string[]): string[] | string | false;
   }
 
-  interface FastifyRequest extends Accepts {
+  // lang/langs are aliases that are not decorated on the request object
+  interface FastifyRequest extends Omit<Accepts, 'lang' | 'langs'> {
     accepts(): Accepts
   }
 
