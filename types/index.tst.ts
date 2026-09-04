@@ -65,6 +65,8 @@ app.get('/', (request, reply) => {
   expect(reply.requestCharsets()).type.toBe<string[]>()
   expect(reply.requestEncoding()).type.toBe<string[]>()
   expect(reply.requestEncodings()).type.toBe<string[]>()
+  expect(reply.requestEncodings('gzip', 'br')).type.toBe<string | false>()
+  expect(reply.requestEncodings(['gzip', 'br'])).type.toBe<string | false>()
   expect(reply.requestLanguage()).type.toBe<string[]>()
   expect(reply.requestLanguages()).type.toBe<string[]>()
 
