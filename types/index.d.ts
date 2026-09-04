@@ -98,7 +98,7 @@ declare module 'fastify' {
     requestCharset: Accepts['charset']
     requestCharsets: Accepts['charsets']
     requestEncoding: Accepts['encoding']
-    requestEncodings: Accepts['charsets']
+    requestEncodings: Accepts['encodings']
     requestLanguage: Accepts['language']
     requestLanguages: Accepts['languages']
     requestType: Accepts['type']
