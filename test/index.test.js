@@ -117,20 +117,19 @@ test('accept header', async (/** @type {TestContext} */ t) => {
     })
   })
 
-  await fastify.listen({ port: 0 })
-
-  const BASE_URL = `http://localhost:${fastify.server.address().port}`
+  await fastify.ready()
 
   for (const testCase of testCases) {
     await t.test(testCase.name, async (/** @type {TestContext} */ t) => {
       t.plan(1)
 
-      const result = await fetch(`${BASE_URL}${testCase.url}`, {
+      const result = await fastify.inject({
+        url: testCase.url,
         headers: {
           accept: testCase.acceptHeader
-        },
+        }
       })
-      t.assert.deepStrictEqual(await result.json(), testCase.expected)
+      t.assert.deepStrictEqual(result.json(), testCase.expected)
     })
   }
 })
