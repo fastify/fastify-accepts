@@ -1,6 +1,6 @@
 {
   "name": "@fastify/accepts",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "Add accept parser to fastify",
   "main": "index.js",
   "type": "commonjs",
