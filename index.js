@@ -38,10 +38,8 @@ function fastifyAccepts (fastify, options, done) {
     const methodName = methodNames[i]
     // Defining methods this way to ensure named functions show in stack traces
     fastify.decorateRequest(methodName, {
-      [methodName]: function (arr) {
-        const acceptsObject = this.accepts()
-        if (arguments.length === 0) return acceptsObject[methodName]()
-        return acceptsObject[methodName](arr)
+      [methodName]: function (...args) {
+        return this.accepts()[methodName](...args)
       }
     }[methodName])
   }
@@ -56,10 +54,8 @@ function fastifyAccepts (fastify, options, done) {
       const acceptsMethodName = 'accepts' + capitalizedMethodName
       // Defining methods this way to ensure named functions show in stack traces
       fastify.decorateReply(replyMethodName, {
-        [acceptsMethodName]: function (arr) {
-          const acceptsObject = this.requestAccepts()
-          if (arguments.length === 0) return acceptsObject[methodName]()
-          return acceptsObject[methodName](arr)
+        [acceptsMethodName]: function (...args) {
+          return this.requestAccepts()[methodName](...args)
         }
       }[acceptsMethodName])
     }

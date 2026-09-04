@@ -150,3 +150,46 @@ test('no reply decorator', async function (/** @type {TestContext} */ t) {
     t.assert.deepStrictEqual(fastify.hasReplyDecorator('request' + method, false), false)
   }
 })
+
+test('variadic arguments are forwarded', async function (/** @type {TestContext} */ t) {
+  t.plan(1)
+
+  const fastify = Fastify()
+  fastify.register(fastifyAccepts, { decorateReply: true })
+
+  t.after(() => fastify.close())
+
+  fastify.get('/', function (req, reply) {
+    reply.send({
+      type: req.type('json', 'html'),
+      typeArray: req.type(['json', 'html']),
+      typeNoArgs: req.types(),
+      typeUndefined: req.type(undefined),
+      typeEmpty: req.type([]),
+      charset: req.charset('utf-8', 'iso-8859-1'),
+      replyLanguage: reply.requestLanguage('fr', 'en'),
+      replyEncoding: reply.requestEncoding(['br', 'gzip'])
+    })
+  })
+
+  const result = await fastify.inject({
+    url: '/',
+    headers: {
+      accept: 'text/html',
+      'accept-charset': 'iso-8859-1',
+      'accept-encoding': 'gzip',
+      'accept-language': 'en'
+    }
+  })
+
+  t.assert.deepStrictEqual(result.json(), {
+    type: 'html',
+    typeArray: 'html',
+    typeNoArgs: ['text/html'],
+    typeUndefined: ['text/html'],
+    typeEmpty: ['text/html'],
+    charset: 'iso-8859-1',
+    replyLanguage: 'en',
+    replyEncoding: 'gzip'
+  })
+})
