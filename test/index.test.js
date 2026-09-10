@@ -193,3 +193,23 @@ test('variadic arguments are forwarded', async function (/** @type {TestContext}
     replyEncoding: 'gzip'
   })
 })
+
+test('request and reply decorators share one memoised accepts object', async function (/** @type {TestContext} */ t) {
+  t.plan(1)
+
+  const fastify = Fastify()
+  fastify.register(fastifyAccepts, { decorateReply: true })
+
+  t.after(() => fastify.close())
+
+  fastify.get('/', function (req, reply) {
+    const acceptsObject = reply.requestAccepts()
+    reply.send({
+      shared: req.accepts() === acceptsObject,
+      memoised: req.accepts() === acceptsObject && reply.requestAccepts() === acceptsObject
+    })
+  })
+
+  const result = await fastify.inject('/')
+  t.assert.deepStrictEqual(result.json(), { shared: true, memoised: true })
+})

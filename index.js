@@ -23,10 +23,7 @@ function acceptsMethod () {
 
 /** @this {import('fastify').FastifyReply} */
 function replyAcceptMethod () {
-  if (!this.request[acceptsObjectSymbol]) {
-    this.request[acceptsObjectSymbol] = accepts(this.request.raw)
-  }
-  return this.request[acceptsObjectSymbol]
+  return this.request.accepts()
 }
 
 /** @type {typeof import('./types/index').fastifyAccepts} */
